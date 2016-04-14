@@ -1,0 +1,31 @@
+{
+  "name": "lalang",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && mocha",
+    "bundle": "watchify example.js -o www/bundle.js",
+    "uglify": "uglifyjs www/bundle.js > www/bundle.min.js",
+    "coverage": "istanbul cover _mocha",
+    "lint": "semistandard"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "escodegen": "^1.8.0",
+    "esprima": "^2.7.1",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5",
+    "semistandard": "^7.0.5",
+    "uglifyjs": "^2.4.10"
+  },
+  "semistandard": {
+    "globals": [
+      "describe",
+      "it",
+      "beforeEach"
+    ]
+  }
+}
