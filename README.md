@@ -1,6 +1,6 @@
 # ndloops
 
-### Goal
+### Current state of the art
 
 The goal of this project is to solve the problem of having to write numerical javascript code that handles `ndarrays` (backed by either an array or by `.get`/`set`), `Arrays` of `Arrays`, vanilla `Arrays` and similar storage formats. The transformation is trivial; maintaining five versions of the same code to handle all combinations of inputs is not.
 
