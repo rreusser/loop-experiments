@@ -59,6 +59,8 @@ function cholesky(A, L) {
 
 in which array-of-arrays-style indexing has been transformed into get/set notation.
 
+This represents the current state of the art. As a proof of concept, it's faily straightforward but opens the door to intersesting transformations.
+
 ### What's next?
 
 Get/set notation is expensive and not particularly interesting. The next step is to move to more direct pointer indexing for ndarrays backed by actual arrays. This means tracking lvalues and rvalues through the for loops and hosting pointer-like arithmetic so that it's not redundant. Block indexing and for loop reordering for performance is also a reasonable extension, but requires careful tracking of index dependencies and a fair amount more footwork.
