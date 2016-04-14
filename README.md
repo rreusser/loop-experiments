@@ -65,7 +65,7 @@ This represents the current state of the art. As a proof of concept, it's faily 
 
 ### What's next?
 
-Get/set notation is expensive and not particularly interesting. The next step is to move to more direct pointer indexing for ndarrays backed by actual arrays. This means tracking lvalues and rvalues through the for loops and hosting pointer-like arithmetic so that it's not redundant. Block indexing and for loop reordering for performance is also a reasonable extension, but requires careful tracking of index dependencies and a fair amount more footwork.
+Get/set notation is expensive and not particularly interesting. The next step is to move to more direct pointer indexing for ndarrays backed by actual arrays. This means tracking lvalues and rvalues through the for loops and hosting pointer-like arithmetic so that it doesn't compute index offets unnecessarily. Block indexing and for loop reordering for performance is also a reasonable extension, but requires careful tracking of index dependencies and a fair amount more footwork.
 
 Also next is creating a realistic workflow for making runtime decisions on which sort of indexing is necessary and for transforming the result back into cached functions.
 
