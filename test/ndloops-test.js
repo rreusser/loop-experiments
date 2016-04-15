@@ -2,9 +2,9 @@
 
 var assert = require('chai').assert;
 var loopTools = require('../');
-var ndloops = require('../plugins/ndloop');
+var ndloops = require('../plugins/ndloops');
 
-describe('ndloop plugin', function () {
+describe('ndloops plugin', function () {
   describe('a for loop over two arrays', function () {
     var code;
 
