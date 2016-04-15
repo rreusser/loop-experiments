@@ -1,5 +1,8 @@
 # loop-experiments
 
+[![Build Status][travis-image]][travis-url]
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+
 > Experiments in code transformation for numerical javascript
 
 ### Goal
@@ -45,3 +48,8 @@ Another possibility is to precompile and package the AST and only include `escod
 ## License
 
 &copy; 2016 Ricky Reusser. MIT License.
+
+[travis-image]: https://travis-ci.org/rreusser/loop-experiments.svg?branch=master
+[travis-url]: https://travis-ci.org/rreusser/loop-experiments
+[stability-image]: http://badges.github.io/stability-badges/dist/experimental.svg
+[stability-url]: http://github.com/badges/stability-badges
