@@ -2,3 +2,4 @@ npm-debug.log
 static/*.js
 coverage
 dist
+www/dist

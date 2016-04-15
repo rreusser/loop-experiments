@@ -1,7 +1,7 @@
 'use strict';
 
-var loopTools = require('./');
-var ndloops = require('./plugins/ndloop');
+var loopTools = require('../');
+var ndloops = require('../plugins/ndloops');
 
 var func = function cholesky (A, L) {
   var n = A.shape[0];

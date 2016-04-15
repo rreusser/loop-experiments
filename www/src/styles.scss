@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
 @import 'github-corner';
 
 body {
@@ -12,8 +12,7 @@ $primary-color: #359;
 .nav {
   height: 50px;
   background-color: $primary-color;;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+  font-family: 'Indie Flower', sans-serif;
   padding: 0 15px;
   line-height: $nav-height;
   color: white;
@@ -21,8 +20,10 @@ $primary-color: #359;
   box-sizing: border-box;
 }
 
-.nav h1 {
+.nav h1 a {
   font-size: 20px;
+  color: white;
+  text-decoration: none;
 }
 
 .githubCorner {
