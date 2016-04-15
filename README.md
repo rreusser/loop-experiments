@@ -12,13 +12,19 @@ The goal of this project is to solve the problem of having to write numerical ja
 
 [![Example](images/example.png)](https://rreusser.github.io/loop-experiments)
 
-This example takes a [Cholesky decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition) indexed using array-of-arrays-style indexing, that is, for example, `A[i][j]` notation. Since storing arrays of arrays isn't always the most efficient, we may wish to use get/set or just unroll the pointer arithmetic instead. Unfortunately, this requires separate codebases for each storage format. In the end, it'll probably just be necessary to write a lot of code, but I like to think there's a more maintainable solution.
+This example takes a [Cholesky decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition) indexed using array-of-arrays-style indexing, that is, for example, `A[i][j]` notation. Since storing arrays of arrays isn't always the most efficient, we may wish to use write `A.get(...)` and `A.set(...)` or just unroll the pointer arithmetic instead.
 
-This repo uses esprima to transform the abstract syntax tree (AST) of the code. To direct the transformation, we add a directive in the style of OpenMP `#pragma omp` statements. This instructs `ndloops` how and where to translate. To make the transformation (currently hard-coded to translate index notation to get/set notation), run:
+Unfortunately, handling different formats like this usually requires separate code for each storage format. `.get`/`.set` is often a solution that lets code interface with any sort of underlying storage format, but for numerical code, the overhead is too great.
+
+This project is an attempt to explore possible solutions. Of course in the end, it'll probably just be necessary to write a lot of code anyway, but this is me imagining that there's a more elegant solution.
+
+This repo uses esprima to transform the abstract syntax tree (AST) of the code. OpenMP `#pragma omp`-style directives guide the transformation, instructing plugins how and where to translate. To make the transformation (currently hard-coded to translate index notation to get/set notation), run:
 
 ```javascript
 loopTools.parse(cholesky).transform(ndloops()).generate();
 ```
+
+Plugins can utilize other plugins, operate in sequence... whatever you want, really.
 
 ### What's next?
 
