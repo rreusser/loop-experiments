@@ -7,8 +7,6 @@
     "start": "webpack-dev-server --inline --hot --content-base www/dist",
     "test": "npm run lint && mocha",
     "build": "browserify index.js --standalone loopTools > dist/loop-tools.bundle.js",
-    "bundle": "watchify example.js -o www/bundle.js",
-    "uglify": "uglifyjs www/bundle.js > www/bundle.min.js",
     "coverage": "istanbul cover _mocha",
     "lint": "semistandard",
     "gh-pages": "webpack && gh-pages -d www/dist -b gh-pages",
