@@ -2,10 +2,11 @@
 
 var loopTools = require('../');
 
-function matchMemberAssignment (node, identifierWhitelist) {
+function matchMemberAssignment (node, parent, identifierWhitelist) {
   if (node.type !== 'AssignmentExpression' ||
       !node.left ||
-      node.left.type !== 'MemberExpression') {
+      node.left.type !== 'MemberExpression' ||
+      !node.left.computed) {
     return false;
   }
 
@@ -44,12 +45,12 @@ function matchMemberAssignment (node, identifierWhitelist) {
           type: 'MemberExpression',
           computed: false,
           property: {type: 'Identifier', name: 'get'},
-          object: object,
+          object: object
         },
         arguments: args.slice(0, args.length - 1)
       },
       right: args[args.length - 1]
-    }
+    };
   }
 
   // Return a call expression to `set` the object's value:
@@ -65,9 +66,31 @@ function matchMemberAssignment (node, identifierWhitelist) {
   };
 }
 
-function matchMemberLookup (node, identifierWhitelist) {
+function matchMemberUpdate (node, parent, identifierWhitelist) {
+  if (node.type !== 'UpdateExpression') {
+    return false;
+  }
+
+  var args = [];
+  var object = node.argument;
+  while (object && object.computed && object.type === 'MemberExpression') {
+    args.unshift(object.property);
+    object = object.object;
+  }
+
+  if (identifierWhitelist && identifierWhitelist.indexOf(object.name) === -1) {
+    return false;
+  }
+
+  throw new Error('Transformation of unary array element increment/decrement is not supported:.');
+}
+
+function matchMemberLookup (node, parent, identifierWhitelist) {
   // If not a member expression, ignore:
-  if (!node || node.type !== 'MemberExpression') {
+  if (!node ||
+      node.type !== 'MemberExpression' ||
+      (parent && parent.type === 'UpdateExpression') ||
+      !node.computed) {
     return false;
   }
 
@@ -100,21 +123,25 @@ function matchMemberLookup (node, identifierWhitelist) {
 
 module.exports = loopTools.createPlugin({
   transform: function (root, traverse) {
-    var identifierWhitelist = this.options ? this.options.identifierWhitelist : undefined;
+    var identifierWhitelist = (this.options && this.options.identifiers) ? this.options.identifiers : [];
 
     var transform = function (property, node, parent, predecessor) {
-      var assignment = matchMemberAssignment(node, identifierWhitelist);
-      if (!assignment) {
-        var rewrite = matchMemberLookup(node, identifierWhitelist);
-        if (!rewrite) {
-          return loopTools.RECURSE;
-        } else {
-          return rewrite;
-        }
-        return loopTools.RECURSE;
+      var rewrite = matchMemberAssignment(node, parent, identifierWhitelist);
+      if (rewrite) {
+        traverse(rewrite.arguments[rewrite.arguments.length - 1], transform);
+        return rewrite;
       } else {
-        traverse(assignment.arguments[assignment.arguments.length - 1], transform);
-        return assignment;
+        rewrite = matchMemberUpdate(node, parent, identifierWhitelist);
+        if (rewrite) {
+          return rewrite;
+        } else {
+          rewrite = matchMemberLookup(node, parent, identifierWhitelist);
+          if (rewrite) {
+            return rewrite;
+          } else {
+            return loopTools.RECURSE;
+          }
+        }
       }
     };
 
