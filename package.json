@@ -9,7 +9,7 @@
     "build": "browserify index.js --standalone loopTools > dist/loop-tools.bundle.js",
     "coverage": "istanbul cover _mocha",
     "lint": "semistandard",
-    "gh-pages": "webpack && gh-pages -d www/dist -b gh-pages",
+    "deploy:web": "npm run build:web && gh-pages -d www/dist -b gh-pages",
     "build:web:copy": "mkdir -p www/dist && cp www/src/index.html www/dist/index.html",
     "build:web:pack": "webpack",
     "build:web": "npm run build:web:copy && npm run build:web:pack",
