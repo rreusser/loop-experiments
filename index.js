@@ -1,6 +1,6 @@
 'use strict';
 
-var Transformer = require('./lib/transformer');
+var Transformer = require('./src/transformer');
 
 var loopTools = {
   NO_RECURSE: false,
