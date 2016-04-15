@@ -1,6 +1,6 @@
-# ndloops
+# loop-experiments
 
-> Experiments with code transformation
+> Experiments in code transformation for numerical javascript
 
 ### Goal
 
