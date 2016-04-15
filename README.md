@@ -14,7 +14,7 @@ The goal of this project is to solve the problem of having to write numerical ja
   ![Example](images/example.png)
 </p>
 
-This exmaple takes a [Cholesky decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition) indexed using array-of-arrays-style indexing, that is, for example, `A[i][j]` notation. Since storing arrays of arrays isn't always the most efficient, we may wish to use get/set or just unroll the pointer arithmetic instead. Unfortunately, this requires separate codebases for each storage format. In the end, it'll probably just be necessary to write a lot of code, but I like to think there's a more maintainable solution.
+This example takes a [Cholesky decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition) indexed using array-of-arrays-style indexing, that is, for example, `A[i][j]` notation. Since storing arrays of arrays isn't always the most efficient, we may wish to use get/set or just unroll the pointer arithmetic instead. Unfortunately, this requires separate codebases for each storage format. In the end, it'll probably just be necessary to write a lot of code, but I like to think there's a more maintainable solution.
 
 This repo uses esprima to transform the abstract syntax tree (AST) of the code. To direct the transformation, we add a directive in the style of OpenMP `#pragma omp` statements. This instructs `ndloops` how and where to translate. To make the transformation (currently hard-coded to translate index notation to get/set notation), run:
 
