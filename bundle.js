@@ -169,7 +169,11 @@
 	        _react2.default.createElement(
 	          'h1',
 	          null,
-	          'loop-tools'
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'https://github.com/rreusser/loop-experiments' },
+	            'loop-experiments'
+	          )
 	        )
 	      ),
 	      this.renderCode()
@@ -42404,11 +42408,11 @@
 
 	exports = module.exports = __webpack_require__(198)();
 	// imports
-	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto:300);", ""]);
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Indie+Flower);", ""]);
 	exports.i(__webpack_require__(199), "");
 
 	// module
-	exports.push([module.id, ".githubCorner:hover .octo-arm {\n  animation: octocat-wave 560ms ease-in-out; }\n\n@keyframes octocat-wave {\n  0% {\n    transform: rotate(0deg); }\n  20% {\n    transform: rotate(-25deg); }\n  40% {\n    transform: rotate(10deg); }\n  60% {\n    transform: rotate(-25deg); }\n  80% {\n    transform: rotate(10deg); }\n  100% {\n    transform: rotate(0deg); } }\n\n@media (max-width: 500px) {\n  .githubCorner:hover .octo-arm {\n    animation: none; }\n  .githubCorner .octo-arm {\n    animation: octocat-wave 560ms ease-in-out; } }\n\nbody {\n  padding: 0;\n  margin: 0; }\n\n.nav {\n  height: 50px;\n  background-color: #359;\n  font-family: 'Roboto', sans-serif;\n  font-weight: 300;\n  padding: 0 15px;\n  line-height: 50px;\n  color: white;\n  border-bottom: 1px solid black;\n  box-sizing: border-box; }\n\n.nav h1 {\n  font-size: 20px; }\n\n.githubCorner {\n  position: absolute;\n  top: 0;\n  right: 0;\n  z-index: 100; }\n\n.container {\n  position: absolute;\n  top: 50px;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n\n.code {\n  width: 50%;\n  position: absolute;\n  top: 0;\n  bottom: 0; }\n\n.code-editor {\n  width: 100%;\n  height: 100%; }\n\n.code .CodeMirror {\n  width: 100%;\n  height: 100%; }\n\n.code--input {\n  left: 0; }\n\n.code--output {\n  right: 0; }\n\n.errorMessage-container {\n  margin: 20px; }\n\n.errorMessage {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: #faa;\n  z-index: 10; }\n\n@media (max-width: 768px) {\n  .code {\n    width: 100%;\n    height: 50%; }\n  .code--input {\n    top: 0;\n    bottom: auto;\n    border-bottom: 1px solid #ccc;\n    z-index: 9; }\n  .code--output {\n    bottom: 0;\n    top: auto; } }\n", ""]);
+	exports.push([module.id, ".githubCorner:hover .octo-arm {\n  animation: octocat-wave 560ms ease-in-out; }\n\n@keyframes octocat-wave {\n  0% {\n    transform: rotate(0deg); }\n  20% {\n    transform: rotate(-25deg); }\n  40% {\n    transform: rotate(10deg); }\n  60% {\n    transform: rotate(-25deg); }\n  80% {\n    transform: rotate(10deg); }\n  100% {\n    transform: rotate(0deg); } }\n\n@media (max-width: 500px) {\n  .githubCorner:hover .octo-arm {\n    animation: none; }\n  .githubCorner .octo-arm {\n    animation: octocat-wave 560ms ease-in-out; } }\n\nbody {\n  padding: 0;\n  margin: 0; }\n\n.nav {\n  height: 50px;\n  background-color: #359;\n  font-family: 'Indie Flower', sans-serif;\n  padding: 0 15px;\n  line-height: 50px;\n  color: white;\n  border-bottom: 1px solid black;\n  box-sizing: border-box; }\n\n.nav h1 a {\n  font-size: 20px;\n  color: white;\n  text-decoration: none; }\n\n.githubCorner {\n  position: absolute;\n  top: 0;\n  right: 0;\n  z-index: 100; }\n\n.container {\n  position: absolute;\n  top: 50px;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n\n.code {\n  width: 50%;\n  position: absolute;\n  top: 0;\n  bottom: 0; }\n\n.code-editor {\n  width: 100%;\n  height: 100%; }\n\n.code .CodeMirror {\n  width: 100%;\n  height: 100%; }\n\n.code--input {\n  left: 0; }\n\n.code--output {\n  right: 0; }\n\n.errorMessage-container {\n  margin: 20px; }\n\n.errorMessage {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: #faa;\n  z-index: 10; }\n\n@media (max-width: 768px) {\n  .code {\n    width: 100%;\n    height: 50%; }\n  .code--input {\n    top: 0;\n    bottom: auto;\n    border-bottom: 1px solid #ccc;\n    z-index: 9; }\n  .code--output {\n    bottom: 0;\n    top: auto; } }\n", ""]);
 
 	// exports
 
