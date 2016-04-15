@@ -82,7 +82,7 @@ function matchMemberUpdate (node, parent, identifierWhitelist) {
     return false;
   }
 
-  throw new Error('Transformation of unary array element increment/decrement is not supported:.');
+  throw new Error('Transformation of unary array element increment/decrement is not supported.');
 }
 
 function matchMemberLookup (node, parent, identifierWhitelist) {

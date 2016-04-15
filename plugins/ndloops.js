@@ -31,7 +31,7 @@ module.exports = loopTools.createPlugin({
             curLoop = {node: node, pragma: loopPragma};
 
             // Handle this section of the tree with different plugins:
-            loopTools.apply(node, indexToGetSet({identifierWhitelist: loopPragma.arrayNames}));
+            loopTools.apply(node, indexToGetSet({identifiers: loopPragma.arrayNames}));
 
             // Don't recurse further on this node with this transform:
             return loopTools.NO_RECURSE;

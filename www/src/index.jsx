@@ -2,33 +2,80 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Codemirror from 'react-codemirror';
 
-require("./styles.scss");
+require('./styles.scss');
 
 import cholesky from './cholesky';
-import loopTools from '../../dist/loop-tools.bundle';
+import loopTools from '../../';
 import ndloops from '../../plugins/ndloops';
+
+function transform (code) {
+  return loopTools.parse(code).transform(ndloops()).generate({format: {indent: {style: '  '}, preserveBlankLines: true}});
+}
 
 var App = React.createClass({
   getInitialState: function () {
-    var code = cholesky.toString().replace(/\t/g,'')
+    var code = cholesky.toString().replace(/\t/g, '');
     return {
       code: code,
-      transformation: loopTools.parse(code).transform(ndloops()).generate()
+      transformation: transform(code),
+      failed: false
     };
   },
 
   updateCode: function (code) {
+    var failed = false;
+    var error = null;
+    try {
+      var trans = transform(code);
+    } catch (e) {
+      failed = true;
+      console.log(e);
+      error = e;
+    }
+
     this.setState({
       code: code,
-      transformation: loopTools.parse(code).transform(ndloops()).generate()
+      transformation: trans,
+      failed: failed,
+      error: error
     });
   },
 
   render: function () {
-    var options = {lineNumbers: true};
-
     return (
-      <Codemirror value={this.state.code} onChange={this.updateCode} options={options}/>
+      <div className="page">
+        <div className="nav">
+          <h1>loop-tools</h1>
+        </div>
+        <div className='container'>
+          <div className='code code--input'>
+            <Codemirror
+              value={this.state.code}
+              onChange={this.updateCode}
+              options={{lineNumbers: true}}
+              className='code-editor'
+            />
+            {this.state.error ? (
+              <div className='errorMessage'>
+                <div className='errorMessage-container'>
+                  <code>
+                    {(!this.state.error.description) ? this.state.error.toString() : (
+                      `Error:${this.state.error.lineNumber}:${this.state.error.column}: ${this.state.error.description}`
+                    )}
+                  </code>
+                </div>
+              </div>
+            ) : null}
+          </div>
+          <div className='code code--output'>
+            <Codemirror
+              value={this.state.transformation}
+              options={{lineNumbers: true}}
+              className='code-editor'
+            />
+          </div>
+        </div>
+      </div>
     );
   }
 });

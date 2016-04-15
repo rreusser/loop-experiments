@@ -9,6 +9,9 @@ function Transformer (funcOrObject) {
   if (typeof funcOrObject === 'function') {
     this.func = funcOrObject;
     this.ast = esprima.parse(this.func);
+  } else if (typeof funcOrObject === 'string') {
+    this.func = null;
+    this.ast = esprima.parse(funcOrObject, {sourceType: 'script'});
   } else if (typeof funcOrObject === 'object') {
     this.ast = funcOrObject;
   }
@@ -51,6 +54,6 @@ Transformer.prototype.traverse = function (node, beforeRecurse, afterRecurse, pa
   return this.context;
 };
 
-Transformer.prototype.generate = function () {
-  return escodegen.generate(this.ast);
+Transformer.prototype.generate = function (options) {
+  return escodegen.generate(this.ast, options);
 };
