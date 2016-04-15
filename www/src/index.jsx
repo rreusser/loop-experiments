@@ -87,9 +87,9 @@ var App = React.createClass({
 
   render: function () {
     return (
-      <div className="page">
-        <div className="nav">
-          <h1><a href="https://github.com/rreusser/loop-experiments">loop-experiments</a></h1>
+      <div className='page'>
+        <div className='nav'>
+          <h1><a href='https://github.com/rreusser/loop-experiments'>loop-experiments</a></h1>
         </div>
         {this.renderCode()}
       </div>
