@@ -86,8 +86,15 @@
 	    return {
 	      code: code,
 	      transformation: transform(code),
-	      failed: false
+	      failed: false,
+	      visible: false
 	    };
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    setTimeout(function () {
+	      this.setState({ visible: true });
+	    }.bind(this), 500);
 	  },
 
 	  updateCode: function updateCode(code) {
@@ -109,6 +116,49 @@
 	    });
 	  },
 
+	  renderCode: function renderCode() {
+	    if (!this.state.visible) {
+	      return null;
+	    }
+
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'container' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'code code--input' },
+	        _react2.default.createElement(_reactCodemirror2.default, {
+	          value: this.state.code,
+	          onChange: this.updateCode,
+	          options: { lineNumbers: true },
+	          className: 'code-editor'
+	        }),
+	        this.state.error ? _react2.default.createElement(
+	          'div',
+	          { className: 'errorMessage' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'errorMessage-container' },
+	            _react2.default.createElement(
+	              'code',
+	              null,
+	              !this.state.error.description ? this.state.error.toString() : 'Error:' + this.state.error.lineNumber + ':' + this.state.error.column + ': ' + this.state.error.description
+	            )
+	          )
+	        ) : null
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'code code--output' },
+	        _react2.default.createElement(_reactCodemirror2.default, {
+	          value: this.state.transformation,
+	          options: { lineNumbers: true },
+	          className: 'code-editor'
+	        })
+	      )
+	    );
+	  },
+
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
@@ -122,42 +172,7 @@
 	          'loop-tools'
 	        )
 	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'container' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'code code--input' },
-	          _react2.default.createElement(_reactCodemirror2.default, {
-	            value: this.state.code,
-	            onChange: this.updateCode,
-	            options: { lineNumbers: true },
-	            className: 'code-editor'
-	          }),
-	          this.state.error ? _react2.default.createElement(
-	            'div',
-	            { className: 'errorMessage' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'errorMessage-container' },
-	              _react2.default.createElement(
-	                'code',
-	                null,
-	                !this.state.error.description ? this.state.error.toString() : 'Error:' + this.state.error.lineNumber + ':' + this.state.error.column + ': ' + this.state.error.description
-	              )
-	            )
-	          ) : null
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'code code--output' },
-	          _react2.default.createElement(_reactCodemirror2.default, {
-	            value: this.state.transformation,
-	            options: { lineNumbers: true },
-	            className: 'code-editor'
-	          })
-	        )
-	      )
+	      this.renderCode()
 	    );
 	  }
 	});
